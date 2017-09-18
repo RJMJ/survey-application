@@ -1,9 +1,7 @@
 # Online Survey application
-## using Angularjs
-
-## link to the deployed application http://clown-canary-75560.bitballoon.com/
-
-## Base url - https://projectsapi.edwisor.com/api/surveys
+using Angularjs
+link to the deployed application http://clown-canary-75560.bitballoon.com/
+Base url - https://projectsapi.edwisor.com/api/surveys
 
 Surveys are very important in this data driven world. Most of the survey creating and
 integrating applications used nowadays are less user friendly.
