@@ -1,0 +1,23 @@
+<div class="jumbotron bg-warning">
+  <div class="text-center">
+    <h1>Which Survey would you like to take?</h1><hr class="intro-divider">
+  </div>
+</div>
+
+<div class="container">
+  <div class="row row-content">
+    <div class="col-sm-6 col-lg-4" ng-repeat="survey in allSurCtrl.allSurvey" ui-sref="singleSurvey({surveyId: survey.surveyId})">
+      <a ng-href="#">  
+        <div class="card">
+          <h3 class="card-header text-center bg-primary text-white text-capitalize">{{survey.surveyTitle}}</h3>          
+          <div class="card-block">
+            <p class="text-center text-capitalize">{{survey.surveySubtitle}}</p>
+          </div>
+        </div>
+      </a>   
+    </div>    
+  </div>
+  <br>
+  <a href="#/" class="btn btn-info"> <i class="fa fa-hand-o-left"></i> Back </a><hr>
+</div>   
+

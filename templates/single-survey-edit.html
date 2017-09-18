@@ -1,0 +1,146 @@
+<div class="jumbotron text-center bg-dark">
+  <div class="row">
+    <div class="col-lg-12">
+        <h1 class="text-primary text-capitalize">For Administration use only</h1>
+        <h2 class="text-success text-capitalize">Survey Production Service</h2>
+      <pre class="text-white">This section allow the administer to take a look at the selected survey and let them make changes in it, 
+      the point to be noted here is that,
+      every question added will start polling from zero, 
+      modifying the question doesn't reset it.</pre>
+      <p class="text-warning">Please look at the survey below-</p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="jumbotron">
+        <h3 class="text-center">{{edSCtrl.singleSurvey[0].surveyTitle}}</h3>
+        <h4 class="text-center">{{edSCtrl.singleSurvey[0].surveySubtitle}}</h4>
+        <div class="row" style="padding-bottom: 20px;">
+          <div class="col-md-4"></div>
+          <div class="col-md-4 text-center"> <!-- ui-sref="createQuestion({surveyId: edSCtrl.singleSurvey[0].surveyId})" -->
+            <a class="btn btn-primary text-white" role="button" ng-click="edSCtrl.queDiaBox()">Add Question</a>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+
+<div class="container" id="question-entry" ng-if="edSCtrl.newQueDiaBox"> <!-- ng-if="loggedIn" -->
+  <form class="col-md-6" ng-submit="edSCtrl.create();">
+    <div class="form-group">
+      <label for="questionText" > <span> Enter your question :</span></label>
+      <br>
+      <input type="text" name="questionText" ng-model="edSCtrl.questionText" 
+                id="questionText" class="form-control" autofocus="autofocus"
+                placeholder="Question" required="required">
+    </div>            
+    <input type="submit" name="submit-question" class="btn btn-primary" value="Submit"> 
+  </form>
+  <br>
+  <div>
+    
+  </div>
+</div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div ng-repeat="question in edSCtrl.singleSurvey" ng-show="!$first"><hr>
+            <p>Q{{$index}}. {{question.questionText}}</p>
+            <form >
+              <div ng-repeat=" option in question.questionOptions track by $index"> 
+                <label>
+                  <input name="options" type="radio" value="$index" ng-click="sinSurCtrl.onOptionButtonClicked(question, $index+1)" ng-disabled="question.disabled">
+                  <span> {{option}} </span>
+                </label>
+              </div>
+            </form>
+            <input type="button" name="deleteQuestion" class="btn btn-light html-entity" value="&#10060;" 
+                title="Delete Question" ng-click="edSCtrl.removeQuestion(question.questionId , $index)">
+            <input type="button" name="editQuestion" class="btn btn-light html-entity" 
+                ng-click="edSCtrl.showQuestionForm(question.questionId, question.questionText, $index)"
+                title="Edit Question" value="&#x270E;">
+            <input type="button" name="addOption" class="btn btn-light html-entity" title="Add Option" value="&#10753;" ng-click="edSCtrl.showForm($index)">
+            <input type="button" name="deleteAllOPtions" class="btn btn-light html-entity" title="delete all options" value="&#10754;" 
+              ng-click="edSCtrl.removeOptions(question.questionId, $index)">
+            <input type="button" name="delete-Answer" class="btn btn-light html-entity" title="delete survey responses" value="&#9249;"
+              ng-click="edSCtrl.removeAnswers(question.questionId, $index+1)">
+            <br><hr>
+            <form class="form-group" ng-if="edSCtrl.showQuestionInput[$index] === true" ng-submit="edSCtrl.updateQuestion(question.questionId , question.questionText , $index)">
+              <input type="text" class="form-control" placeholder="Enter question" ng-model='question.questionText' required="required">
+              <br>
+              <input type="submit" class="btn btn-info" value="Submit" >
+            </form>
+
+            <form class="form-group" ng-if="edSCtrl.show[$index] === true" ng-submit="edSCtrl.createOption(question.questionId , $index)">
+             <input type="text" class="form-control" placeholder="Enter option" ng-model='edSCtrl.option[$index]' required="removeOptions">
+              <br>
+              <input type="submit" class="btn btn-info" value="Submit" ng-show="edSCtrl.option[$index]">
+            </form>
+
+          </div><hr>
+          <a href="#" class="btn btn-success btn-lg" ui-sref="viewAllSurvey">
+            <i class="fa fa-share-square-o"></i>
+            <span class="network-name">Submit</span>
+          </a><hr>
+        </div>
+      </div>
+    </div>
+  
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <input type="button" name="show-stats" value="show/hide stats" class="btn btn-dark text-warning" ng-click="edSCtrl.showHideStats()"
+        style="width: 100%;">
+      <hr>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-2" ng-if="edSCtrl.showHide && edSCtrl.surveyTaken"></div>
+    <div class="col-md-8" ng-if="edSCtrl.showHide && edSCtrl.surveyTaken">
+      <div ng-repeat="statsResult in edSCtrl.statsResult track by $index" ng-init="id = $index">
+        <div>
+          <strong>Stats of Question no. {{id+1}}</strong>
+        </div>
+        <table class="table table-bordered table-responsive">
+          <thead>
+            <th>Option No.</th>
+            <th>No. of Respnses</th>
+          </thead>
+          <tbody ng-repeat="result in statsResult track by $index" ng-init="opt = $index">
+            <tr>
+              <td ng-if="opt == 0">Skipped question</td>
+              <td ng-if="opt != 0">Option {{opt}}</td>
+              <td>{{result}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-2" ng-if="edSCtrl.showHide && edSCtrl.surveyTaken"></div>
+    <br>
+    <div class="col-md-12 text-center" ng-if="edSCtrl.showHide && !edSCtrl.surveyTaken">
+      <strong>No submission yet.</strong>
+    </div>
+    <br>
+    <div class="col-md-2"></div>
+    <div>
+      <br>
+      <a href="" class="btn btn-info" ui-sref="edit"> <i class="fa fa-hand-o-left"></i> Back </a>
+      <hr>
+    </div>
+  </div>
+  <br>
+</div>

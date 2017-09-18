@@ -1,0 +1,49 @@
+<div class="jumbotron text-center bg-dark">
+  <div class="row">
+    <div class="col-lg-12">
+        <h1 class="text-primary text-capitalize">For Administration use only</h1>
+        <h2 class="text-success text-capitalize">Survey Production Service</h2>
+      <pre class="text-white">This section allow the administers to design a survey form according to their needs, the point to be noted here is that,
+      surveys can only be designed as a multiple choice questionaire with only single correct answer</pre>
+      <p class="text-warning">Please Enter your verified credentials below-</p>
+    </div>
+  </div>
+</div>
+
+<!-- Login Form -->
+<div class="container">
+  <div class='row row-content' ng-if="!loggedIn">
+    <form class="col-sm-6 col-10 mx-auto card" ng-submit="logCtrl.logIn()">
+      <div class="form-group"><br><br>
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username"  placeholder="Username" ng-model="logCtrl.userName">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" ng-model="logCtrl.password">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+
+<div class="row row-content" ng-if="loggedIn">  
+  <div class="col-md-8 col-sm-10 mx-auto">
+    <div class="card bg-dark"><br><br>
+        <div>
+          <h2 class="text-center text-danger">Guidance for you</h2><hr class="intro-divider">
+          <p class="text-center text-info"> Here you can manage an existing survey or create a new one.</p>
+        </div>
+        <div class="row" style="padding: 20px;">
+          <div class="col-md-6 text-center">
+            <p class="text-white"> Define a survey with credentials and all the details as you need</p>
+            <a class="btn btn-success" ui-sref="create"> Create Survey </a>
+          </div>
+          <div class="col-md-6 text-center"> 
+            <p class="text-white">Check all details for final review and modify it if needed</p>  
+            <a class="btn btn-success" ui-sref="edit"> Modify Survey </a>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

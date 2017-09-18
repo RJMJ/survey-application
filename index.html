@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="surveyApp">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="This app uses publically hosted apis to GET and POST surveys">
+    <meta name="author" content="Samar Taj Shaikh">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Survey App</title>
+	<link rel="stylesheet" href="styles/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="styles/styles.css">
+	<link href="https://fonts.googleapis.com/css?family=Junge" rel="stylesheet">
+</head>
+<body>
+	<ui-view>
+	</ui-view>
+	<footer class="py-5 bg-dark">
+    	<div class="container">
+    		<p class="m-0 text-center text-white">Copyright &copy; Created by Samar Taj Shaikh 2017. All Rights Reserved</p>
+		</div>
+    </footer>
+
+	<!-- dependencies -->
+	<script type="text/javascript" src="scripts/angular.min.js"></script>
+	<script type="text/javascript" src="scripts/angular-ui-router.min.js"></script>
+	<!-- modules -->
+	<script type="text/javascript" src="modules/data.module.js"></script>
+	<script type="text/javascript" src="modules/surveyapp.module.js"></script>
+	<!-- controllers -->
+	<script type="text/javascript" src="controllers/home.controller.js"></script>
+	<script type="text/javascript" src="controllers/allsurvey.controller.js"></script>
+	<script type="text/javascript" src="controllers/singlesurvey.controller.js"></script>
+	<script type="text/javascript" src="controllers/login.controller.js"></script>
+	<script type="text/javascript" src="controllers/create-survey.controller.js"></script>
+	<script type="text/javascript" src="controllers/edit.controller.js"></script>
+	<script type="text/javascript" src="controllers/cre-mod.controller.js"></script>
+	<script type="text/javascript" src="controllers/edSinSur.controller.js"></script>
+	<!-- services -->
+	<script type="text/javascript" src="services/surveydata.service.js"></script>
+	<!-- routes -->
+	<script type="text/javascript" src="route/routes.js"></script>
+	<!-- templates and component templates -->
+	<script type="text/javascript" src="templates/home.template.html"></script>
+	<script type="text/javascript" src="templates/all-survey-view.html"></script>
+	<script type="text/javascript" src="templates/single-survey-view.html"></script>
+	<script type="text/javascript" src="templates/login-page.html"></script>
+	<script type="text/javascript" src="templates/create-page.html"></script>
+	<script type="text/javascript" src="templates/survey-edit-view.html"></script>
+	<script type="text/javascript" src="templates/survey-modify.html"></script>
+	<script type="text/javascript" src="templates/single-survey-edit.html"></script>
+</body>
+</html>

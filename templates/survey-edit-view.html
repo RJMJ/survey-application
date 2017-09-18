@@ -1,0 +1,57 @@
+<div class="jumbotron text-center bg-dark">
+  <div class="row">
+    <div class="col-lg-12">
+        <h1 class="text-primary text-capitalize">For Administration use only</h1>
+        <h2 class="text-success text-capitalize">Survey Production Service</h2>
+      <pre class="text-white">This section allow the administer to take a look at all present surveys and let them decide whether they want to <span class="text-warning">change</span>/<span class="text-danger">delete</span>/<span class="text-success">Inspect</span>, 
+      the point to be noted here is that,
+      once deleted the data corresponding to that survey will also lost permanently, 
+      modifying the question doesn't reset it.</pre>
+      <p class="text-warning">Please look at all the surveys below-</p>
+    </div>
+  </div>
+</div>
+
+<div class="container"> <!-- ng-if="loggedIn" -->
+   <div class="row">
+      <div class="col-sm-12 text-center">
+         <h1 class="all-survey-head">List of surveys</h1>
+      </div>
+   </div>
+
+<div class="container">
+   <div class="row row-content">
+      <div class="col-sm-6 col-lg-4" ng-repeat="survey in editCtrl.allSurvey track by $index" style="padding-top: 20px;">
+         <a  ng-href="#" style="text-decoration: none;"> 
+            <div class="card" ui-sref="edSinSur({surveyId: survey.surveyId})">
+               <h4 class="card-header text-center bg-secondary text-white text-capitalize"> {{survey.surveyTitle}} </h4>
+               <div class="card-block">
+                  <p class="text-center text-capitalize">{{survey.surveySubtitle}}</p>
+               </div>
+               
+               <div class="row" style="padding-bottom: 20px;">
+                  <div class="col-sm-4 col-4 text-center">
+                     <a class="btn btn-danger text-white" ng-click="editCtrl.delete(survey.surveyId , $index);" >
+                        <div class="tiles"> Delete </div>
+                     </a>   
+                  </div>
+                  <div class="col-sm-4 col-4 text-center " >
+                     <a class="btn btn-warning text-white" ui-sref="modify({surveyId: survey.surveyId})" >
+                        <div class="tiles"> Edit </div>
+                     </a>   
+                  </div>
+                  <div class="col-sm-4 col-4 text-center">
+                     <a class="btn btn-success" ui-sref="edSinSur({surveyId: survey.surveyId})" >
+                        <div class="tiles"> Inspect</div>
+                     </a>   
+                  </div>
+               </div>
+            </div> 
+         </a>
+      </div>      
+   </div>
+</div>
+   
+   <br>
+   <a href="#" class="btn btn-info"> <i class="fa fa-hand-o-left"></i> Back </a><hr>
+</div>
